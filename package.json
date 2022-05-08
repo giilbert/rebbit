@@ -9,6 +9,9 @@
   ],
   "main": "index.js",
   "scripts": {
+    "build": "yarn generate && yarn app build",
+    "start": "yarn app start",
+    "generate": "prisma generate",
     "app": "yarn workspace app",
     "api": "yarn workspace api"
   },

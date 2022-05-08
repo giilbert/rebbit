@@ -6,7 +6,8 @@ const IndexPage: NextPage = () => {
 
   return (
     <div>
-      <p>Adasd</p>
+      <h1>hi</h1>
+      <p>{hello.data?.greeting}</p>
     </div>
   );
 };

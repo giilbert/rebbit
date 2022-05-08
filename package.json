@@ -1,0 +1,23 @@
+{
+  "name": "rebbit",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "workspaces": [
+    "packages/api",
+    "packages/app"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "app": "yarn workspace app",
+    "api": "yarn workspace api"
+  },
+  "keywords": [],
+  "author": "giilbert",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "dotenv-cli": "^5.1.0",
+    "gen-env-types": "^1.3.4"
+  }
+}

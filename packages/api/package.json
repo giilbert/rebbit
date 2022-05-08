@@ -1,0 +1,12 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^3.13.0",
+    "@trpc/next": "^9.23.2",
+    "@trpc/server": "^9.23.2",
+    "dotenv": "^16.0.0",
+    "prisma": "^3.13.0"
+  }
+}

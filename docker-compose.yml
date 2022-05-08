@@ -1,0 +1,14 @@
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    ports:
+      - '3306:3306'
+    expose:
+      - 3306
+    volumes:
+      - /var/lib/mysql
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: rebbit
+      MYSQL_DATABASE: rebbit

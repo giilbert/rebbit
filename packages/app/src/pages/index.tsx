@@ -1,14 +1,12 @@
 import type { NextPage } from 'next';
-import { trpc } from '../utils/trpc';
+import { Heading } from '@chakra-ui/react';
+import { Layout } from '@components/Layout';
 
 const IndexPage: NextPage = () => {
-  const hello = trpc.useQuery(['hello']);
-
   return (
-    <div>
-      <h1>hi</h1>
-      <p>{hello.data?.greeting}</p>
-    </div>
+    <Layout>
+      <Heading>hi</Heading>
+    </Layout>
   );
 };
 

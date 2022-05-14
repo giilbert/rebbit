@@ -25,6 +25,9 @@
       ],
       "@components/*": [
         "components/*"
+      ],
+      "@auth/*": [
+        "modules/auth/*"
       ]
     }
   },

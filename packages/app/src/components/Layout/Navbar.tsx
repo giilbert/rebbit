@@ -1,29 +1,46 @@
-import { Button, ButtonGroup, Flex, Spacer, Text } from '@chakra-ui/react';
-import NextLink from 'next/link';
+import LoginModal from '@auth/components/LoginModal';
+import {
+  Button,
+  ButtonGroup,
+  Flex,
+  Spacer,
+  Text,
+  useDisclosure,
+} from '@chakra-ui/react';
 
 export const Navbar: React.FC = () => {
+  const login = useDisclosure();
+
   return (
-    <Flex
-      width="100vw"
-      backgroundColor="blackAlpha.200"
-      position="fixed"
-      left="0"
-      top="0"
-      alignItems="center"
-      px="4"
-      py="1"
-    >
-      <Text>rebbit</Text>
+    <>
+      {login.isOpen && <LoginModal disclosure={login} />}
 
-      <Spacer />
+      <Flex
+        width="100vw"
+        backgroundColor="blackAlpha.200"
+        position="fixed"
+        left="0"
+        top="0"
+        alignItems="center"
+        px="4"
+        py="1"
+      >
+        <Text>rebbit</Text>
 
-      <ButtonGroup>
-        <NextLink href="/login">
-          <Button colorScheme="blue" height="min-content" px="5" py="2">
+        <Spacer />
+
+        <ButtonGroup>
+          <Button
+            colorScheme="blue"
+            height="min-content"
+            px="5"
+            py="2"
+            onClick={login.onOpen}
+          >
             Login
           </Button>
-        </NextLink>
-      </ButtonGroup>
-    </Flex>
+        </ButtonGroup>
+      </Flex>
+    </>
   );
 };

@@ -37,6 +37,9 @@
       ],
       "@utils/*": [
         "../../api/src/utils/*"
+      ],
+      "@middleware/*": [
+        "../../api/src/middleware/*"
       ]
     }
   },

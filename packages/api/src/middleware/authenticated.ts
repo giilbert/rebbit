@@ -1,15 +1,19 @@
-import { Context } from '@utils/context';
+import { Context, Meta } from '@utils/context';
 import { TRPCError } from '@trpc/server';
-import type { MiddlewareFunction } from '@trpc/server/src/internals/middlewares';
+import { MiddlewareFunction } from '@trpc/server/dist/declarations/src/internals/middlewares';
 
-export const authenticated: MiddlewareFunction<Context, unknown, {}> = async ({
-  ctx,
-  next,
-}) => {
-  if (!ctx.user)
+export const authenticated: MiddlewareFunction<
+  Context,
+  Context,
+  Meta
+> = async ({ ctx, next, meta }) => {
+  if (!ctx.session && meta?.auth) {
     throw new TRPCError({
       code: 'UNAUTHORIZED',
     });
+  }
 
-  return next();
+  return next({
+    ctx,
+  });
 };

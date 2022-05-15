@@ -7,9 +7,11 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
+import { useSession } from 'next-auth/react';
 
 export const Navbar: React.FC = () => {
   const login = useDisclosure();
+  const { data: session, status } = useSession();
 
   return (
     <>
@@ -17,6 +19,7 @@ export const Navbar: React.FC = () => {
 
       <Flex
         width="100vw"
+        height="2.75rem"
         backgroundColor="blackAlpha.200"
         position="fixed"
         left="0"
@@ -30,15 +33,20 @@ export const Navbar: React.FC = () => {
         <Spacer />
 
         <ButtonGroup>
-          <Button
-            colorScheme="blue"
-            height="min-content"
-            px="5"
-            py="2"
-            onClick={login.onOpen}
-          >
-            Login
-          </Button>
+          {status !== 'loading' &&
+            (session === null ? (
+              <Button
+                colorScheme="blue"
+                height="min-content"
+                px="6"
+                py="2"
+                onClick={login.onOpen}
+              >
+                Login
+              </Button>
+            ) : (
+              <Text>Logged in as {JSON.stringify(session?.user)}</Text>
+            ))}
         </ButtonGroup>
       </Flex>
     </>

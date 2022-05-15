@@ -23,11 +23,20 @@
       "@api": [
         "../../api/index"
       ],
+      "@lib/*": [
+        "lib/*"
+      ],
       "@components/*": [
         "components/*"
       ],
       "@auth/*": [
         "modules/auth/*"
+      ],
+      "@controllers/*": [
+        "../../api/src/controllers/*"
+      ],
+      "@utils/*": [
+        "../../api/src/utils/*"
       ]
     }
   },

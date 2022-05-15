@@ -8,14 +8,15 @@ import {
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import { loginFormSchema } from './schema';
+import { signIn } from 'next-auth/react';
 
 const LoginForm: React.FC = () => {
   return (
     <Box>
       <Formik
         initialValues={{ email: '', password: '' }}
-        onSubmit={(values, actions) => {
-          console.log(values);
+        onSubmit={async (values, actions) => {
+          await signIn('credentials', values);
 
           actions.setSubmitting(false);
         }}

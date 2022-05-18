@@ -8,14 +8,17 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { useSession } from 'next-auth/react';
+import SignUpModal from '@auth/components/SignUpModal';
 
 export const Navbar: React.FC = () => {
   const login = useDisclosure();
+  const signUp = useDisclosure();
   const { data: session, status } = useSession();
 
   return (
     <>
       {login.isOpen && <LoginModal disclosure={login} />}
+      {signUp.isOpen && <SignUpModal disclosure={signUp} />}
 
       <Flex
         width="100vw"
@@ -35,15 +38,28 @@ export const Navbar: React.FC = () => {
         <ButtonGroup>
           {status !== 'loading' &&
             (session === null ? (
-              <Button
-                colorScheme="blue"
-                height="min-content"
-                px="6"
-                py="2"
-                onClick={login.onOpen}
-              >
-                Login
-              </Button>
+              <>
+                <Button
+                  colorScheme="blue"
+                  height="min-content"
+                  px="6"
+                  py="2"
+                  onClick={login.onOpen}
+                >
+                  Login
+                </Button>
+
+                <Button
+                  colorScheme="blue"
+                  variant="outline"
+                  height="min-content"
+                  px="6"
+                  py="2"
+                  onClick={signUp.onOpen}
+                >
+                  Sign Up
+                </Button>
+              </>
             ) : (
               <Text>Logged in as {JSON.stringify(session?.user)}</Text>
             ))}

@@ -6,12 +6,14 @@ const prisma = new PrismaClient();
 
 export default CredentialsProvider({
   credentials: {},
-  async authorize(credentials: { email?: string; password?: string }) {
+  async authorize(credentials?: { email?: string; password?: string }) {
+    if (!credentials || !credentials?.password) return null;
+
     await prisma.$connect();
 
     const user = await prisma.user.findUnique({
       where: {
-        email: credentials.email,
+        email: credentials?.email,
       },
     });
 

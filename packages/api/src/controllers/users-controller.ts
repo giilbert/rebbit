@@ -1,5 +1,7 @@
 import { createRouter } from '@utils/context';
+import { prisma } from '@utils/prisma';
 import { z } from 'zod';
+import { hash } from 'argon2';
 
 const usersController = createRouter().mutation('create', {
   input: z
@@ -15,19 +17,24 @@ const usersController = createRouter().mutation('create', {
       password: z
         .string()
         .min(8, 'Password must be greater than 8 characters long'),
-      confirmPassword: z.string(),
+      confirmPassword: z.string().optional(),
     })
     .refine((data) => data.password === data.confirmPassword, {
       message: "Passwords don't match",
       path: ['confirmPassword'],
     }),
 
-  async resolve(req) {
-    console.log(req);
+  async resolve({ input }) {
+    const hashedPassword = await hash(input.password);
 
-    return {
-      test: 2,
-    };
+    delete input.confirmPassword;
+
+    await prisma.user.create({
+      data: {
+        ...input,
+        password: hashedPassword,
+      },
+    });
   },
 });
 

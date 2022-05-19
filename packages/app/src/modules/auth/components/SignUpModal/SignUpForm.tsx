@@ -8,10 +8,13 @@ import {
 } from '@chakra-ui/react';
 import { trpc } from '@lib/trpc';
 import { Field, Form, Formik } from 'formik';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import { signInFormSchema } from './schema';
 
 const SignUpForm: React.FC = () => {
   const createUser = trpc.useMutation('users.create');
+  const router = useRouter();
 
   return (
     <Box>
@@ -24,8 +27,10 @@ const SignUpForm: React.FC = () => {
           confirmPassword: '',
         }}
         onSubmit={async (values, actions) => {
-          createUser.mutate(values);
+          await createUser.mutateAsync(values);
+          await signIn('credentials', values);
           actions.setSubmitting(false);
+          router.push('/');
         }}
         validationSchema={signInFormSchema}
       >

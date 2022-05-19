@@ -17,7 +17,12 @@ const SignUpModal: React.FC<{
   const { isOpen, onClose } = disclosure;
 
   return (
-    <Modal size="md" isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
+    <Modal
+      size="md"
+      isOpen={isOpen!}
+      onClose={onClose!}
+      scrollBehavior="inside"
+    >
       <ModalOverlay />
 
       <ModalContent>

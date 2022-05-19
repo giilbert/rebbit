@@ -17,7 +17,7 @@ const LoginModal: React.FC<{
   const { isOpen, onClose } = disclosure;
 
   return (
-    <Modal size="md" isOpen={isOpen} onClose={onClose}>
+    <Modal size="md" isOpen={isOpen!} onClose={onClose!}>
       <ModalOverlay />
 
       <ModalContent>

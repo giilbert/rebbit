@@ -11,6 +11,8 @@
   "scripts": {
     "build": "yarn generate && yarn app build",
     "start": "yarn app start",
+    "dev": "yarn app dev",
+    "lint": "yarn app next lint",
     "generate": "prisma generate",
     "app": "yarn workspace app",
     "api": "yarn workspace api"

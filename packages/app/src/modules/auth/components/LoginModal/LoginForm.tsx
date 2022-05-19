@@ -25,7 +25,7 @@ const LoginForm: React.FC = () => {
         {(props) => (
           <Form>
             <Field name="email">
-              {({ field, form }) => (
+              {({ field, form }: any) => (
                 <FormControl
                   isInvalid={form.errors.email && form.touched.email}
                 >
@@ -36,7 +36,7 @@ const LoginForm: React.FC = () => {
               )}
             </Field>
             <Field name="password">
-              {({ field, form }) => (
+              {({ field, form }: any) => (
                 <FormControl
                   isInvalid={form.errors.password && form.touched.password}
                   mt={4}

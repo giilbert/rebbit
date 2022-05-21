@@ -1,4 +1,4 @@
-import LoginModal from '@auth/components/LoginModal';
+import SignInModal from '@auth/components/SignInModal';
 import {
   Button,
   ButtonGroup,
@@ -11,13 +11,13 @@ import { useSession } from 'next-auth/react';
 import SignUpModal from '@auth/components/SignUpModal';
 
 export const Navbar: React.FC = () => {
-  const login = useDisclosure();
+  const signIn = useDisclosure();
   const signUp = useDisclosure();
   const { data: session, status } = useSession();
 
   return (
     <>
-      {login.isOpen && <LoginModal disclosure={login} />}
+      {signIn.isOpen && <SignInModal disclosure={signIn} />}
       {signUp.isOpen && <SignUpModal disclosure={signUp} />}
 
       <Flex
@@ -44,9 +44,9 @@ export const Navbar: React.FC = () => {
                   height="min-content"
                   px="6"
                   py="2"
-                  onClick={login.onOpen}
+                  onClick={signIn.onOpen}
                 >
-                  Login
+                  Sign In
                 </Button>
 
                 <Button

@@ -9,9 +9,9 @@ import {
   Text,
   UseDisclosureProps,
 } from '@chakra-ui/react';
-import LoginForm from './LoginForm';
+import SignInForm from './SignInForm';
 
-const LoginModal: React.FC<{
+const SignInModal: React.FC<{
   disclosure: UseDisclosureProps;
 }> = ({ disclosure }) => {
   const { isOpen, onClose } = disclosure;
@@ -22,11 +22,11 @@ const LoginModal: React.FC<{
 
       <ModalContent>
         <ModalHeader fontWeight="bold" fontSize="3xl">
-          Login
+          Sign In
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody pb={6}>
-          <LoginForm />
+          <SignInForm />
         </ModalBody>
 
         <ModalFooter></ModalFooter>
@@ -35,4 +35,4 @@ const LoginModal: React.FC<{
   );
 };
 
-export default LoginModal;
+export default SignInModal;

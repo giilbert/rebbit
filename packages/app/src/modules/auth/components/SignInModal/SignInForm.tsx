@@ -7,10 +7,10 @@ import {
   Input,
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
-import { loginFormSchema } from './schema';
+import { signInFormSchema } from './schema';
 import { signIn } from 'next-auth/react';
 
-const LoginForm: React.FC = () => {
+const SignInForm: React.FC = () => {
   return (
     <Box>
       <Formik
@@ -20,7 +20,7 @@ const LoginForm: React.FC = () => {
 
           actions.setSubmitting(false);
         }}
-        validationSchema={loginFormSchema}
+        validationSchema={signInFormSchema}
       >
         {(props) => (
           <Form>
@@ -63,4 +63,4 @@ const LoginForm: React.FC = () => {
   );
 };
 
-export default LoginForm;
+export default SignInForm;

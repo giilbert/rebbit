@@ -10,7 +10,7 @@ import { trpc } from '@lib/trpc';
 import { Field, Form, Formik } from 'formik';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { signInFormSchema } from './schema';
+import { signUpFormSchema } from './schema';
 
 const SignUpForm: React.FC = () => {
   const createUser = trpc.useMutation('users.create');
@@ -32,7 +32,7 @@ const SignUpForm: React.FC = () => {
           actions.setSubmitting(false);
           router.push('/');
         }}
-        validationSchema={signInFormSchema}
+        validationSchema={signUpFormSchema}
       >
         {(props) => (
           <Form>

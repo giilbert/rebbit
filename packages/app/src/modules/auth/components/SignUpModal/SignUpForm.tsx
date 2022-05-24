@@ -5,6 +5,7 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
+  Text,
 } from '@chakra-ui/react';
 import { trpc } from '@lib/trpc';
 import { Field, Form, Formik } from 'formik';
@@ -103,6 +104,10 @@ const SignUpForm: React.FC = () => {
                 </FormControl>
               )}
             </Field>
+
+            <Text color="red.500" my="2">
+              {createUser.error?.message}
+            </Text>
 
             <Button
               mt={4}

@@ -2,6 +2,7 @@ import { createRouter } from '@utils/context';
 import { prisma } from '@utils/prisma';
 import { z } from 'zod';
 import { hash } from 'argon2';
+import { TRPCError } from '@trpc/server';
 
 const usersController = createRouter().mutation('create', {
   input: z
@@ -25,6 +26,19 @@ const usersController = createRouter().mutation('create', {
     }),
 
   async resolve({ input }) {
+    // check if user with same username or email already exists
+    const user = await prisma.user.findFirst({
+      where: {
+        OR: [{ username: input.username }, { email: input.email }],
+      },
+    });
+
+    if (user)
+      throw new TRPCError({
+        code: 'BAD_REQUEST',
+        message: 'User with same Email or username already exists.',
+      });
+
     const hashedPassword = await hash(input.password);
 
     delete input.confirmPassword;

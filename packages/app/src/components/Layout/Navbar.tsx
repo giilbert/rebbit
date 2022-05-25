@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { useSession } from 'next-auth/react';
 import SignUpModal from '@auth/components/SignUpModal';
+import { signOut } from 'next-auth/react';
 
 export const Navbar: React.FC = () => {
   const signIn = useDisclosure();
@@ -35,7 +36,7 @@ export const Navbar: React.FC = () => {
 
         <Spacer />
 
-        <ButtonGroup>
+        <ButtonGroup alignItems="center">
           {status !== 'loading' &&
             (session === null ? (
               <>
@@ -61,7 +62,21 @@ export const Navbar: React.FC = () => {
                 </Button>
               </>
             ) : (
-              <Text>Logged in as {JSON.stringify(session?.user)}</Text>
+              <>
+                <Text>
+                  Signed in as <b>{session?.user.name}</b>
+                </Text>
+                <Button
+                  colorScheme="blue"
+                  variant="outline"
+                  height="min-content"
+                  px="6"
+                  py="2"
+                  onClick={() => signOut()}
+                >
+                  Sign Out
+                </Button>
+              </>
             ))}
         </ButtonGroup>
       </Flex>

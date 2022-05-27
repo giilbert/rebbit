@@ -7,6 +7,7 @@ import {
   InputGroup,
   InputLeftAddon,
   Textarea,
+  Text,
 } from '@chakra-ui/react';
 import { trpc } from '@lib/trpc';
 import { Form, Field, Formik } from 'formik';
@@ -60,6 +61,10 @@ const CreateCommunityForm: React.FC = () => {
               </FormControl>
             )}
           </Field>
+
+          <Text color="red.500" my="2">
+            {createCommunity.error?.message}
+          </Text>
 
           <Button
             mt={4}

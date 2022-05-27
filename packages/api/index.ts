@@ -1,12 +1,12 @@
-import { usersController } from '@controllers/users-controller';
+import { usersController } from '@controllers/users';
+import { communitiesController } from '@controllers/communities';
 import { createRouter } from '@utils/context';
 import { authenticated } from '@middleware/authenticated';
-import { z } from 'zod';
-import * as trpc from '@trpc/server';
 
 export const appRouter = createRouter()
   .middleware(authenticated)
-  .merge('users.', usersController);
+  .merge('users.', usersController)
+  .merge('communities.', communitiesController);
 
 export type AppRouter = typeof appRouter;
 export { PrismaClient } from '@prisma/client';

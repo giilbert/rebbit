@@ -1,11 +1,15 @@
 import type { NextPage } from 'next';
-import { useRouter } from 'next/router';
-import { Text } from '@chakra-ui/react';
+import CreateCommunity from '@community/components/CreateCommunity';
+import { Layout } from '@components/Layout';
 
-const CommunityPage: NextPage = () => {
-  const router = useRouter();
+interface PageProps {}
 
-  return <Text>{router.query.name}</Text>;
+const CommunityPage: NextPage<PageProps> = () => {
+  return (
+    <Layout>
+      <CreateCommunity />
+    </Layout>
+  );
 };
 
 export default CommunityPage;

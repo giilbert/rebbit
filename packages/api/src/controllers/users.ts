@@ -46,6 +46,9 @@ const usersController = createRouter().mutation('create', {
     await prisma.user.create({
       data: {
         ...input,
+        profile: {
+          create: {},
+        },
         password: hashedPassword,
       },
     });

@@ -38,6 +38,9 @@
       "@community/*": [
         "modules/community/*",
       ],
+      "@posts/*": [
+        "modules/posts/*"
+      ],
       // 
       // 
       "@controllers/*": [

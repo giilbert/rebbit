@@ -15,6 +15,9 @@ export default CredentialsProvider({
       where: {
         email: credentials?.email,
       },
+      include: {
+        profile: true,
+      },
     });
 
     await prisma.$disconnect();
@@ -25,6 +28,9 @@ export default CredentialsProvider({
       return null;
     }
 
-    return user;
+    return {
+      ...user,
+      ...user.profile,
+    };
   },
 });

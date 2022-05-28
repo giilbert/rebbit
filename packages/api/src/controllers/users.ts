@@ -29,7 +29,10 @@ const usersController = createRouter().mutation('create', {
     // check if user with same username or email already exists
     const user = await prisma.user.findFirst({
       where: {
-        OR: [{ username: input.username }, { email: input.email }],
+        email: input.email,
+        profile: {
+          username: input.username,
+        },
       },
     });
 
@@ -45,9 +48,12 @@ const usersController = createRouter().mutation('create', {
 
     await prisma.user.create({
       data: {
-        ...input,
+        email: input.email,
         profile: {
-          create: {},
+          create: {
+            name: input.name,
+            username: input.username,
+          },
         },
         password: hashedPassword,
       },

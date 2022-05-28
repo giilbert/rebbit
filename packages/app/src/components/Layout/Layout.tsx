@@ -1,8 +1,9 @@
 import { Container } from '@chakra-ui/react';
+import { ReactNode } from 'react';
 import { Navbar } from './Navbar';
 
 export const Layout: React.FC<{
-  children: React.ReactElement[] | React.ReactElement;
+  children: ReactNode;
 }> = ({ children }) => {
   return (
     <>

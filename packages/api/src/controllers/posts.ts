@@ -1,5 +1,6 @@
 import { createRouter } from '@utils/context';
 import { prisma } from '@utils/prisma';
+import { generatePostSlug } from '@utils/slug';
 import { z } from 'zod';
 
 const postsController = createRouter()
@@ -17,6 +18,7 @@ const postsController = createRouter()
         data: {
           ...input,
           authorId: ctx.session?.user?.id,
+          slug: generatePostSlug(input.title),
         },
       });
     },

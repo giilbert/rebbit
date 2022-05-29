@@ -8,7 +8,7 @@ export const Layout: React.FC<{
   return (
     <>
       <Navbar />
-      <Container mt="12" maxW="800px">
+      <Container mt="16" maxW="800px">
         {children}
       </Container>
     </>

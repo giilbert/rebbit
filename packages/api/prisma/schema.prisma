@@ -32,6 +32,7 @@ model Author {
 
 model Post {
   id      String @id @default(cuid())
+  slug    String
   title   String
   content String @db.LongText
 

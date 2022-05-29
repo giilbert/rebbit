@@ -8,6 +8,7 @@
     "@trpc/server": "^9.23.2",
     "argon2": "^0.28.5",
     "dotenv": "^16.0.0",
+    "nanoid": "^3.3.4",
     "next-auth": "^4.3.4",
     "prisma": "^3.13.0"
   }

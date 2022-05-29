@@ -13,7 +13,12 @@ const PostPage: NextPage<PageProps> = ({ post }) => {
   // idk what's happening, SSR is weird
   if (!post) return null;
   return (
-    <Layout>
+    <Layout
+      meta={{
+        title: post.title,
+        description: post.content,
+      }}
+    >
       <PostCard post={post} clickable={false} />
     </Layout>
   );

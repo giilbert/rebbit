@@ -3,7 +3,6 @@ import { trpc } from '@lib/trpc';
 import CreatePostCard from '@posts/components/CreatePostCard';
 import PostCard from '@posts/components/PostCard';
 import { Community } from '@prisma/client';
-import { useState } from 'react';
 
 const CommunityFrontPage: React.FC<{
   community: Community;

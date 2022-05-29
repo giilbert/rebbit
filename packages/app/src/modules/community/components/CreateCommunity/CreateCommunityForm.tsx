@@ -11,9 +11,11 @@ import {
 } from '@chakra-ui/react';
 import { trpc } from '@lib/trpc';
 import { Form, Field, Formik } from 'formik';
+import { useRouter } from 'next/router';
 
 const CreateCommunityForm: React.FC = () => {
   const createCommunity = trpc.useMutation('communities.create');
+  const router = useRouter();
 
   return (
     <Formik
@@ -21,6 +23,7 @@ const CreateCommunityForm: React.FC = () => {
       onSubmit={async (values, { setSubmitting }) => {
         await createCommunity.mutateAsync(values);
         setSubmitting(false);
+        router.push(`/r/${values.slug}`);
       }}
     >
       {(props) => (

@@ -11,9 +11,11 @@ import {
 import { trpc } from '@lib/trpc';
 import { Formik, Form, Field } from 'formik';
 import { Community } from '@prisma/client';
+import { useRouter } from 'next/router';
 
 const CreatePost: React.FC<{ community: Community }> = ({ community }) => {
   const createPost = trpc.useMutation('posts.create');
+  const router = useRouter();
 
   return (
     <Box mt="16">
@@ -25,9 +27,10 @@ const CreatePost: React.FC<{ community: Community }> = ({ community }) => {
             communityId: community.id,
           });
           setSubmitting(false);
+          router.back();
         }}
       >
-        {(props) => (
+        {(props: any) => (
           <Form>
             <Field name="title">
               {({ field, form }: any) => (

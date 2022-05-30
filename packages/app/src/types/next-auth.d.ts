@@ -1,7 +1,7 @@
-import NextAuth from 'next-auth';
-import { DefaultJWT } from 'next-auth/jwt';
+import NextAuth from "next-auth";
+import { DefaultJWT } from "next-auth/jwt";
 
-declare module 'next-auth' {
+declare module "next-auth" {
   interface User {
     username: string;
     name: string;
@@ -13,7 +13,7 @@ declare module 'next-auth' {
   }
 }
 
-declare module 'next-auth/jwt' {
+declare module "next-auth/jwt" {
   // type assertions = bad
   interface JWT extends DefaultJWT {
     username: string;

@@ -6,32 +6,32 @@ import {
   FormLabel,
   Input,
   Text,
-} from '@chakra-ui/react';
-import { trpc } from '@lib/trpc';
-import { Field, Form, Formik } from 'formik';
-import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/router';
-import { signUpFormSchema } from './schema';
+} from "@chakra-ui/react";
+import { trpc } from "@lib/trpc";
+import { Field, Form, Formik } from "formik";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
+import { signUpFormSchema } from "./schema";
 
 const SignUpForm: React.FC = () => {
-  const createUser = trpc.useMutation('users.create');
+  const createUser = trpc.useMutation("users.create");
   const router = useRouter();
 
   return (
     <Box>
       <Formik
         initialValues={{
-          name: '',
-          username: '',
-          email: '',
-          password: '',
-          confirmPassword: '',
+          name: "",
+          username: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
         }}
         onSubmit={async (values, actions) => {
           await createUser.mutateAsync(values);
-          await signIn('credentials', values);
+          await signIn("credentials", values);
           actions.setSubmitting(false);
-          router.push('/');
+          router.push("/");
         }}
         validationSchema={signUpFormSchema}
       >

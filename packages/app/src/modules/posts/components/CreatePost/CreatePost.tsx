@@ -7,20 +7,20 @@ import {
   Input,
   Textarea,
   Text,
-} from '@chakra-ui/react';
-import { trpc } from '@lib/trpc';
-import { Formik, Form, Field } from 'formik';
-import { Community } from '@prisma/client';
-import { useRouter } from 'next/router';
+} from "@chakra-ui/react";
+import { trpc } from "@lib/trpc";
+import { Formik, Form, Field } from "formik";
+import { Community } from "@prisma/client";
+import { useRouter } from "next/router";
 
 const CreatePost: React.FC<{ community: Community }> = ({ community }) => {
-  const createPost = trpc.useMutation('posts.create');
+  const createPost = trpc.useMutation("posts.create");
   const router = useRouter();
 
   return (
     <Box mt="16">
       <Formik
-        initialValues={{ title: '', content: '' }}
+        initialValues={{ title: "", content: "" }}
         onSubmit={async (values, { setSubmitting }) => {
           await createPost.mutateAsync({
             ...values,

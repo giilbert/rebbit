@@ -1,5 +1,5 @@
-import { Box, Input } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
+import { Box, Input } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 const CreatePostCard: React.FC = () => {
   const router = useRouter();

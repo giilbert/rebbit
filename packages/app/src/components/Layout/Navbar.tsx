@@ -1,4 +1,4 @@
-import SignInModal from '@auth/components/SignInModal';
+import SignInModal from "@auth/components/SignInModal";
 import {
   Button,
   ButtonGroup,
@@ -6,10 +6,10 @@ import {
   Spacer,
   Text,
   useDisclosure,
-} from '@chakra-ui/react';
-import { useSession } from 'next-auth/react';
-import SignUpModal from '@auth/components/SignUpModal';
-import { signOut } from 'next-auth/react';
+} from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
+import SignUpModal from "@auth/components/SignUpModal";
+import { signOut } from "next-auth/react";
 
 export const Navbar: React.FC = () => {
   const signIn = useDisclosure();
@@ -37,7 +37,7 @@ export const Navbar: React.FC = () => {
         <Spacer />
 
         <ButtonGroup alignItems="center">
-          {status !== 'loading' &&
+          {status !== "loading" &&
             (session === null ? (
               <>
                 <Button

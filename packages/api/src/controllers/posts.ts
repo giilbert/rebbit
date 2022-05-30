@@ -1,10 +1,10 @@
-import { createRouter } from '@utils/context';
-import { prisma } from '@utils/prisma';
-import { generatePostSlug } from '@utils/slug';
-import { z } from 'zod';
+import { createRouter } from "@utils/context";
+import { prisma } from "@utils/prisma";
+import { generatePostSlug } from "@utils/slug";
+import { z } from "zod";
 
 const postsController = createRouter()
-  .mutation('create', {
+  .mutation("create", {
     input: z.object({
       title: z.string(),
       content: z.string(),
@@ -23,7 +23,7 @@ const postsController = createRouter()
       });
     },
   })
-  .query('hot', {
+  .query("hot", {
     input: z.object({
       communityId: z.string(),
       limit: z.number().min(1).max(50).default(20),

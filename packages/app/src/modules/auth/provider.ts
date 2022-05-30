@@ -1,6 +1,6 @@
-import CredentialsProvider from 'next-auth/providers/credentials';
-import { PrismaClient } from '@api';
-import { verify } from 'argon2';
+import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaClient } from "@api";
+import { verify } from "argon2";
 
 const prisma = new PrismaClient();
 

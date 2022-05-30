@@ -5,18 +5,18 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
-} from '@chakra-ui/react';
-import { Field, Form, Formik } from 'formik';
-import { signInFormSchema } from './schema';
-import { signIn } from 'next-auth/react';
+} from "@chakra-ui/react";
+import { Field, Form, Formik } from "formik";
+import { signInFormSchema } from "./schema";
+import { signIn } from "next-auth/react";
 
 const SignInForm: React.FC = () => {
   return (
     <Box>
       <Formik
-        initialValues={{ email: '', password: '' }}
+        initialValues={{ email: "", password: "" }}
         onSubmit={async (values, actions) => {
-          await signIn('credentials', values);
+          await signIn("credentials", values);
 
           actions.setSubmitting(false);
         }}

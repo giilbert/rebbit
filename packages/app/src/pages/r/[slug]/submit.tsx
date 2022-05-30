@@ -1,8 +1,8 @@
-import type { GetServerSideProps, NextPage } from 'next';
-import { Layout } from '@components/Layout';
-import { Community } from '@prisma/client';
-import { prisma } from '@utils/prisma';
-import CreatePost from '@posts/components/CreatePost';
+import type { GetServerSideProps, NextPage } from "next";
+import { Layout } from "@components/Layout";
+import { Community } from "@prisma/client";
+import { prisma } from "@utils/prisma";
+import CreatePost from "@posts/components/CreatePost";
 
 interface PageProps {
   community: Community;

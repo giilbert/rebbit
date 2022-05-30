@@ -1,7 +1,7 @@
-import { Container } from '@chakra-ui/react';
-import Head from 'next/head';
-import { ReactNode } from 'react';
-import { Navbar } from './Navbar';
+import { Container } from "@chakra-ui/react";
+import Head from "next/head";
+import { ReactNode } from "react";
+import { Navbar } from "./Navbar";
 
 interface PageMeta {
   title: string;
@@ -15,10 +15,10 @@ export const Layout: React.FC<{
   return (
     <>
       <Head>
-        <title>{meta?.title || 'Rebbit'}</title>
+        <title>{meta?.title || "Rebbit"}</title>
         <meta
           name="description"
-          content={meta?.description || 'The homepage of the internet.'}
+          content={meta?.description || "The homepage of the internet."}
         />
       </Head>
 

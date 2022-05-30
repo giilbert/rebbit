@@ -8,8 +8,8 @@ import {
   ModalOverlay,
   Text,
   UseDisclosureProps,
-} from '@chakra-ui/react';
-import SignInForm from './SignInForm';
+} from "@chakra-ui/react";
+import SignInForm from "./SignInForm";
 
 const SignInModal: React.FC<{
   disclosure: UseDisclosureProps;

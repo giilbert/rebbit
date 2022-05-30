@@ -1,1 +1,1 @@
-export { default } from './CreatePostCard';
+export { default } from "./CreatePostCard";

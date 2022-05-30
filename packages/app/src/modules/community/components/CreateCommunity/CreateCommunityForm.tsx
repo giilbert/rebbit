@@ -8,18 +8,18 @@ import {
   InputLeftAddon,
   Textarea,
   Text,
-} from '@chakra-ui/react';
-import { trpc } from '@lib/trpc';
-import { Form, Field, Formik } from 'formik';
-import { useRouter } from 'next/router';
+} from "@chakra-ui/react";
+import { trpc } from "@lib/trpc";
+import { Form, Field, Formik } from "formik";
+import { useRouter } from "next/router";
 
 const CreateCommunityForm: React.FC = () => {
-  const createCommunity = trpc.useMutation('communities.create');
+  const createCommunity = trpc.useMutation("communities.create");
   const router = useRouter();
 
   return (
     <Formik
-      initialValues={{ name: '', description: '', slug: '' }}
+      initialValues={{ name: "", description: "", slug: "" }}
       onSubmit={async (values, { setSubmitting }) => {
         await createCommunity.mutateAsync(values);
         setSubmitting(false);

@@ -1,15 +1,15 @@
-import { Box, Button, Heading, Text } from '@chakra-ui/react';
-import { trpc } from '@lib/trpc';
-import CreatePostCard from '@posts/components/CreatePostCard';
-import PostCard from '@posts/components/PostCard';
-import { Community } from '@prisma/client';
+import { Box, Button, Heading, Text } from "@chakra-ui/react";
+import { trpc } from "@lib/trpc";
+import CreatePostCard from "@posts/components/CreatePostCard";
+import PostCard from "@posts/components/PostCard";
+import { Community } from "@prisma/client";
 
 const CommunityFrontPage: React.FC<{
   community: Community;
 }> = ({ community }) => {
   let end = false;
   const postsQuery = trpc.useInfiniteQuery(
-    ['posts.hot', { communityId: community.id }],
+    ["posts.hot", { communityId: community.id }],
     {
       getNextPageParam: (lastPage) => {
         if (lastPage.nextCursor) return lastPage.nextCursor;

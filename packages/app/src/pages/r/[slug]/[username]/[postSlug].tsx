@@ -1,9 +1,8 @@
-import PostCard from '@posts/components/PostCard';
-import { GetServerSideProps, NextPage } from 'next';
-import { Post, Author } from '@prisma/client';
-import { prisma } from '@utils/prisma';
-import { Text } from '@chakra-ui/react';
-import { Layout } from '@components/Layout';
+import PostCard from "@posts/components/PostCard";
+import { GetServerSideProps, NextPage } from "next";
+import { Post, Author } from "@prisma/client";
+import { prisma } from "@utils/prisma";
+import { Layout } from "@components/Layout";
 
 interface PageProps {
   post: Post & { author: Author | null };

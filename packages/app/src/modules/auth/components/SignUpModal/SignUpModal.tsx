@@ -6,10 +6,9 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Text,
   UseDisclosureProps,
-} from '@chakra-ui/react';
-import SignUpForm from './SignUpForm';
+} from "@chakra-ui/react";
+import SignUpForm from "./SignUpForm";
 
 const SignUpModal: React.FC<{
   disclosure: UseDisclosureProps;

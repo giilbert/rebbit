@@ -54,6 +54,15 @@ const postsController = createRouter()
         nextCursor,
       };
     },
+  })
+  .mutation("doot", {
+    input: z.object({
+      postId: z.string(),
+      doot: z.enum(["up", "down"]),
+    }),
+    async resolve() {
+      console.log("TODO: dooting");
+    },
   });
 
 export { postsController };

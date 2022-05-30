@@ -11,7 +11,8 @@ interface PageMeta {
 export const Layout: React.FC<{
   children: ReactNode;
   meta?: PageMeta;
-}> = ({ children, meta }) => {
+  maxW?: string;
+}> = ({ children, meta, maxW }) => {
   return (
     <>
       <Head>
@@ -23,7 +24,7 @@ export const Layout: React.FC<{
       </Head>
 
       <Navbar />
-      <Container mt="16" maxW="800px">
+      <Container mt="16" maxW={maxW || "800px"}>
         {children}
       </Container>
     </>

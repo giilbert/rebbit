@@ -1,8 +1,20 @@
-import { Box, Button, Heading, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Grid,
+  Heading,
+  SimpleGrid,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+} from "@chakra-ui/react";
 import { trpc } from "@lib/trpc";
 import CreatePostCard from "@posts/components/CreatePostCard";
 import PostCard from "@posts/components/PostCard";
 import { Community } from "@prisma/client";
+import AboutCommunity from "./AboutCommunity";
+import Banner from "./Banner";
 
 const CommunityFrontPage: React.FC<{
   community: Community;
@@ -22,19 +34,30 @@ const CommunityFrontPage: React.FC<{
     .reduce((curr, prev) => [...curr, ...prev]);
 
   return (
-    <Box>
-      <Heading>Welcome to {community.name}!</Heading>
-      <Text>{community.description}</Text>
-      <Text>Founded {community.createdAt.toDateString()}</Text>
+    <Grid templateColumns={{ base: "1fr", lg: "3fr 1fr" }} gridGap="2">
+      <Tabs>
+        <Banner community={community} />
 
-      <CreatePostCard />
+        <TabPanels>
+          <TabPanel px="0">
+            <CreatePostCard />
 
-      {posts && posts.map((post) => <PostCard post={post} key={post.id} />)}
+            {posts &&
+              posts.map((post) => <PostCard post={post} key={post.id} />)}
 
-      {!end && (
-        <Button onClick={() => postsQuery.fetchNextPage()}>load more</Button>
-      )}
-    </Box>
+            {!end && (
+              <Button onClick={() => postsQuery.fetchNextPage()}>
+                load more
+              </Button>
+            )}
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
+
+      <Box bgColor="blackAlpha.50">
+        <AboutCommunity community={community} />
+      </Box>
+    </Grid>
   );
 };
 

@@ -11,7 +11,7 @@ interface PageProps {
 
 const CommunityPage: NextPage<PageProps> = ({ community }) => {
   return (
-    <Layout>
+    <Layout maxW="1000px">
       {!community && <CreateCommunity />}
       {community && <CommunityFrontPage community={community} />}
     </Layout>

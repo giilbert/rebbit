@@ -1,15 +1,14 @@
-datasource db {
-  url                  = env("DATABASE_URL")
-  provider             = "mysql"
-  referentialIntegrity = "prisma"
-}
-
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["referentialIntegrity"]
 }
 
-// mostly private information
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
 model User {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
@@ -18,7 +17,6 @@ model User {
   profile   Author?
 }
 
-// public information
 model Author {
   id             String      @id @default(cuid())
   user           User?       @relation(fields: [userId], references: [id])
@@ -28,19 +26,32 @@ model Author {
   profilePicture String      @default("/profile.png")
   posts          Post[]
   communities    Community[]
+  doots          PostDoot[]
 }
 
 model Post {
-  id      String @id @default(cuid())
-  slug    String
-  title   String
-  content String @db.LongText
-
-  author   Author? @relation(fields: [authorId], references: [id])
-  authorId String?
-
+  id          String     @id @default(cuid())
+  slug        String
+  title       String
+  content     String     @db.LongText
+  author      Author?    @relation(fields: [authorId], references: [id])
+  authorId    String?
   community   Community? @relation(fields: [communityId], references: [id])
   communityId String?
+  upDoots     Int        @default(0)
+  downDoots   Int        @default(0)
+  doots       PostDoot[]
+}
+
+model PostDoot {
+  id       String   @id @default(cuid())
+  post     Post     @relation(fields: [postId], references: [id])
+  postId   String   @unique
+  author   Author   @relation(fields: [authorId], references: [id])
+  authorId String
+  value    DootType
+
+  @@index([postId, authorId])
 }
 
 model Community {
@@ -52,4 +63,9 @@ model Community {
   iconURL     String   @default("/community.png")
   members     Author[]
   posts       Post[]
+}
+
+enum DootType {
+  UP
+  DOWN
 }

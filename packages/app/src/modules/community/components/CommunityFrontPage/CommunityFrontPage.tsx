@@ -1,14 +1,4 @@
-import {
-  Box,
-  Button,
-  Grid,
-  Heading,
-  SimpleGrid,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, Grid, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import { trpc } from "@lib/trpc";
 import CreatePostCard from "@posts/components/CreatePostCard";
 import PostCard from "@posts/components/PostCard";

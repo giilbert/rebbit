@@ -2,6 +2,7 @@ import { createRouter } from "@utils/context";
 import { prisma } from "@utils/prisma";
 import { generatePostSlug } from "@utils/slug";
 import { z } from "zod";
+import { DootType } from "@prisma/client";
 
 const postsController = createRouter()
   .mutation("create", {
@@ -23,13 +24,42 @@ const postsController = createRouter()
       });
     },
   })
+  .mutation("doot", {
+    meta: { auth: true },
+    input: z.object({
+      postId: z.string(),
+      type: z.enum([DootType.UP, DootType.DOWN]),
+    }),
+    async resolve({ input, ctx }) {
+      await prisma.postDoot.create({
+        data: {
+          authorId: ctx.session?.user.id!,
+          postId: input.postId,
+          value: input.type,
+        },
+      });
+      // count doots
+      const upDoots = await prisma.postDoot.count({
+        where: { postId: input.postId, value: DootType.UP },
+      });
+      const downDoots = await prisma.postDoot.count({
+        where: { postId: input.postId, value: DootType.DOWN },
+      });
+
+      await prisma.post.update({
+        where: { id: input.postId },
+        data: { upDoots, downDoots },
+      });
+    },
+  })
+
   .query("hot", {
     input: z.object({
       communityId: z.string(),
       limit: z.number().min(1).max(50).default(20),
       cursor: z.any().nullish(),
     }),
-    async resolve({ input }) {
+    async resolve({ input, ctx }) {
       const { cursor, communityId, limit } = input;
 
       const posts = await prisma.post.findMany({
@@ -38,6 +68,9 @@ const postsController = createRouter()
         },
         include: {
           author: true,
+          doots: {
+            where: { authorId: ctx.session?.user.id },
+          },
         },
         take: limit + 1,
         cursor: cursor ? { id: cursor } : undefined,
@@ -53,15 +86,6 @@ const postsController = createRouter()
         posts,
         nextCursor,
       };
-    },
-  })
-  .mutation("doot", {
-    input: z.object({
-      postId: z.string(),
-      doot: z.enum(["up", "down"]),
-    }),
-    async resolve() {
-      console.log("TODO: dooting");
     },
   });
 

@@ -1,11 +1,12 @@
 import PostCard from "@posts/components/PostCard";
 import { GetServerSideProps, NextPage } from "next";
-import { Post, Author } from "@prisma/client";
+import { Post, Author, PostDoot } from "@prisma/client";
 import { prisma } from "@utils/prisma";
 import { Layout } from "@components/Layout";
+import { getSession } from "next-auth/react";
 
 interface PageProps {
-  post: Post & { author: Author | null };
+  post: Post & { author: Author | null; doots: PostDoot[] };
 }
 
 const PostPage: NextPage<PageProps> = ({ post }) => {
@@ -25,7 +26,10 @@ const PostPage: NextPage<PageProps> = ({ post }) => {
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async ({
   query,
+  req,
 }) => {
+  const session = await getSession({ req });
+
   const post = await prisma.post.findFirst({
     where: {
       slug: query.postSlug as string,
@@ -35,6 +39,11 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async ({
     },
     include: {
       author: true,
+      doots: {
+        where: {
+          authorId: session?.user.id,
+        },
+      },
     },
   });
 
